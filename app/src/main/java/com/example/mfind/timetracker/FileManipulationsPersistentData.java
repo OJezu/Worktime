@@ -26,8 +26,14 @@ import android.util.Log;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
+
+// Since to SDK 26
+// import java.time.LocalDate;
+// import java.time.LocalTime;
+
+// Backported java.time.* to SDK 25
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalTime;
 
 /**
  * This class is used by MainActivity and BroadcastReceiver Service

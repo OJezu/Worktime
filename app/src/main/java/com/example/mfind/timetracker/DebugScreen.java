@@ -1,9 +1,6 @@
 package com.example.mfind.timetracker;
 
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
@@ -11,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.util.List;
 
 import static com.example.mfind.timetracker.MainActivity.changeSecondsToFormat;
 
@@ -20,13 +16,10 @@ public class DebugScreen extends AppCompatActivity {
     boolean mBoundedReceiver;
     NetworkStateCheck mServerReceiver;
 
-    private Context context;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug_screen);
-        this.context = this;
         mBoundedReceiver = false;
     }
 

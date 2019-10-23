@@ -5,6 +5,7 @@ import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -63,7 +64,12 @@ public class PeriodicalSave extends JobService {
             @Override
             public void run() {
                 Intent mIntentSR = new Intent(getApplicationContext(), NetworkStateCheck.class);
-                startForegroundService(mIntentSR);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(mIntentSR);
+                } else {
+                    startService(mIntentSR);
+                }
 
                 // Interface used for connection with BroadcastReceiver Service
                 ServiceConnection mConnectionToReceiver = new ServiceConnection() {

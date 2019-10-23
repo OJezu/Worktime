@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -42,6 +43,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+
+import com.jakewharton.threetenabp.AndroidThreeTen;
 
 /**
  * MainActivity is the main screen we can see when launching app for the first time.
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidThreeTen.init(this);
         setContentView(R.layout.activity_main);
         this.context = this;
 
@@ -300,7 +304,10 @@ public class MainActivity extends AppCompatActivity {
         requestLocationPermission();
 
         final Intent service = new Intent(context, NetworkStateCheck.class);
-        context.startForegroundService(service); // won't start a new service if one is already running
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(service); // won't start a new service if one is already running
+        }
 
         final Intent serviceF = new Intent(context, FileManipulationsPersistentData.class);
         context.startService(serviceF);
@@ -341,8 +348,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(
+        int requestCode,
+        @android.support.annotation.NonNull String[] permissions,
+        int[] grantResults
+    ) {
         if (grantResults.length > 0
                 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(context, "App needs location to access SSID of connected network.", Toast.LENGTH_LONG).show();

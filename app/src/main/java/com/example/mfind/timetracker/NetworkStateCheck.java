@@ -23,7 +23,11 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import java.time.LocalDateTime;
+// Since to SDK 26
+// import java.time.LocalDateTime;
+
+// Backported java.time.* to SDK 25
+import org.threeten.bp.LocalDateTime;
 
 import static com.example.mfind.timetracker.MainActivity.changeSecondsToFormat;
 import static java.lang.Thread.sleep;

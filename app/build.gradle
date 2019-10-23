@@ -10,7 +10,7 @@ android {
     defaultConfig {
         // This id identifies application data on user devices.
         applicationId "com.github.pafinde.worktime"
-        minSdkVersion 22
+        minSdkVersion 25
         targetSdkVersion 28
         versionCode 6
         versionName "1.1"
@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-lite:3.0.0'    // protobuf
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1' // data.time.* backport for SDK 25
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

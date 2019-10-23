@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.example.mfind.timetracker;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -32,14 +31,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
-import java.time.Duration;
-import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import javax.security.auth.login.LoginException;
+// Since SDK 26
+// import java.time.Duration;
+// import java.time.format.DateTimeParseException;
+
+// Backported java.time.* to SDK 25
+import org.threeten.bp.Duration;
+import org.threeten.bp.format.DateTimeParseException;
 
 import static java.lang.Character.isDigit;
 

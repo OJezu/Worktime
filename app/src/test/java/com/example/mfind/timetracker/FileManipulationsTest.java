@@ -2,7 +2,11 @@ package com.example.mfind.timetracker;
 
 import org.junit.Test;
 
-import java.time.LocalDate;
+// Since SDK 26
+// import java.time.LocalDate;
+
+// Backported java.time.* to SDK 25
+import org.threeten.bp.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
